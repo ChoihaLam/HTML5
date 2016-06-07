@@ -24,11 +24,12 @@
 			cxt.lineWidth = 10;
 			cxt.strokeStyle = "blue";
 			//cxt.fillStyle = "#ABCDEF";
+			cxt.fillStyle = 'rgba(171,205,239,0.5)';  //尝试使用半透明背景，失败，原因未知
 			cxt.beginPath();
 			cxt.arc(250,250,200,0,360,false);
 			cxt.closePath();
 			cxt.stroke();
-			//cxt.fill();
+			cxt.fill();
 			//刻度
 				//时刻度
 				for(var i=0;i<12;i++){

@@ -21,14 +21,14 @@
 			hour = hour>12?hour-12:hour;
 
 			//表盘(蓝色)
-			cxt.lineWidth = 30;
+			cxt.lineWidth = 10;
 			cxt.strokeStyle = "blue";
-			cxt.fillStyle = "#ABCDEF";
+			//cxt.fillStyle = "#ABCDEF";
 			cxt.beginPath();
 			cxt.arc(250,250,200,0,360,false);
 			cxt.closePath();
 			cxt.stroke();
-			cxt.fill();
+			//cxt.fill();
 			//刻度
 				//时刻度
 				for(var i=0;i<12;i++){

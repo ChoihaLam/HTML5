@@ -13,7 +13,7 @@
 			function drawTrack(){
 				for(var i=0;i<7;i++){
 					cxt.beginPath();
-					cxt.arc(500,500,(i+1)*50,0,360,false);
+					cxt.arc(500,400,(i+1)*50,0,360,false);
 					cxt.closePath();
 					//设置笔触的颜色
 					cxt.strokeStyle = "#fff";
@@ -42,7 +42,7 @@
 					//保存之前的画布内容
 					cxt.save();
 					//重置0,0坐标点
-					cxt.translate(500,500);
+					cxt.translate(500,400);
 					//设置旋转角度
 					cxt.rotate(this.time*(360/this.cycle)*Math.PI/180);
 					//画星球

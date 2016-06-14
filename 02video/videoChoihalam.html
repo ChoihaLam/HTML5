@@ -1,99 +1,100 @@
 <!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8" />
 	</head>
 	<body>
 		<video src="movie.webm" controls="controls">
-			ÄúµÄÆÆä¯ÀÀÆ÷¶¼ÊÇ¹Å¶­ÁË£¬Ôç¸Ã»»ÁË£¬²»È»ĞİÏë¿´ÎÒÃÇµÄ¼¤ÇéĞ¡µçÓ°¡£
+			æ‚¨çš„ç ´æµè§ˆå™¨éƒ½æ˜¯å¤è‘£äº†ï¼Œæ—©è¯¥æ¢äº†ï¼Œä¸ç„¶ä¼‘æƒ³çœ‹æˆ‘ä»¬çš„æ¿€æƒ…å°ç”µå½±ã€‚
 		</video>
 		<hr/>
-		<p>¶à×ÊÔ´µÄÊÓÆµ²¥·Å</p>
+		<p>å¤šèµ„æºçš„è§†é¢‘æ’­æ”¾</p>
 		<video controls="controls" width="500" height="500" poster="PLMM.jpg" >
 			<source src="movie.ogg" type="video/ogg"/>
 			<source src="movie.webm" type="video/webm"/>
-			ÄúµÄä¯ÀÀÆ÷²»Ö§³ÖÊÓÆµ±êÇ©£¬»¹²»¸Ï¿ìÉı¼¶¡£
+			æ‚¨çš„æµè§ˆå™¨ä¸æ”¯æŒè§†é¢‘æ ‡ç­¾ï¼Œè¿˜ä¸èµ¶å¿«å‡çº§ã€‚
 		</video>
 		<hr />
-		<p>Ê¹ÓÃÒÔÏÂVIDEO±êÇ©µÄAPI</p><br />
+		<p>ä½¿ç”¨ä»¥ä¸‹VIDEOæ ‡ç­¾çš„API</p><br />
 		<video src="movie.webm" controls="controls" id="video"> 
-			ÄúµÄÆÆä¯ÀÀÆ÷¶¼ÊÇ¹Å¶­ÁË£¬Ôç¸Ã»»ÁË£¬²»È»ĞİÏë¿´ÎÒÃÇµÄ¼¤ÇéĞ¡µçÓ°¡£
+			æ‚¨çš„ç ´æµè§ˆå™¨éƒ½æ˜¯å¤è‘£äº†ï¼Œæ—©è¯¥æ¢äº†ï¼Œä¸ç„¶ä¼‘æƒ³çœ‹æˆ‘ä»¬çš„æ¿€æƒ…å°ç”µå½±ã€‚
 		</video><br/>
-		<button onclick="bofang(this)">²¥·Å</button>
-		<button onclick="zanting()">ÔİÍ£</button>
-		<button onclick="kuaijin()">¿ì½ø</button>
-		<button onclick="kuaitui()">¿ìÍË</button>
-		<button onclick="shutup(this)">±Õ×ì</button>
-		<button onclick="soso()">¿ìËÙ</button>
-		<button onclick="yu()">ÂıËÙ</button>
-		<button onclick="normal()">Õı³£ËÙ¶È</button>
-		<button onclick="up()">ÒôÁ¿+</button>
-		<button onclick="down()">ÒôÁ¿-</button>
+		<button onclick="bofang(this)">æ’­æ”¾</button>
+		<button onclick="zanting()">æš‚åœ</button>
+		<button onclick="kuaijin()">å¿«è¿›</button>
+		<button onclick="kuaitui()">å¿«é€€</button>
+		<button onclick="shutup(this)">é—­å˜´</button>
+		<button onclick="soso()">å¿«é€Ÿ</button>
+		<button onclick="yu()">æ…¢é€Ÿ</button>
+		<button onclick="normal()">æ­£å¸¸é€Ÿåº¦</button>
+		<button onclick="up()">éŸ³é‡+</button>
+		<button onclick="down()">éŸ³é‡-</button>
 		<script>
 
-			//»ñÈ¡¶ÔÓ¦µÄvideo±êÇ©
+			//è·å–å¯¹åº”çš„videoæ ‡ç­¾
 			var video=document.getElementById('video');
-			//²¥·Å·½·¨
+			//æ’­æ”¾æ–¹æ³•
 			function bofang(plays){
-				//trueÊÇÔİÍ£×´Ì¬
+				//trueæ˜¯æš‚åœçŠ¶æ€
 				if(video.paused){
 					video.play();
-					plays.innerHTML = "ÔİÍ£";	
+					plays.innerHTML = "æš‚åœ";	
 				}
 				else{
 					video.pause();
-					plays.innerHTML = "²¥·Å";
+					plays.innerHTML = "æ’­æ”¾";
 				}
 
 				//video.play();
 			}
-			//ÔİÍ£·½·¨
+			//æš‚åœæ–¹æ³•
 			function zanting(){
 				video.pause();
 			}
-			//¿ì½ø10Ãë·½·¨
+			//å¿«è¿›10ç§’æ–¹æ³•
 			function kuaijin(){
 				video.currentTime+=10;
 			}
-			//¿ìÍË10Ãë·½·¨
+			//å¿«é€€10ç§’æ–¹æ³•
 			function kuaitui(){
 				video.currentTime-=10;
 			}
 			function shutup(obj){
-				//video.muted=true;¾²Òô
+				//video.muted=true;é™éŸ³
 				if(video.muted){
-					obj.innerHTML = "±Õ×ì";
+					obj.innerHTML = "é—­å˜´";
 					video.muted = false;
 				}
 				else{
-					obj.innerHTML = "ÕÅ×ì";
+					obj.innerHTML = "å¼ å˜´";
 					video.muted = true;
 				}
 			}
-			//¼ÓËÙ²¥·Å
+			//åŠ é€Ÿæ’­æ”¾
 			function soso(){
 				video.playbackRate = 3;
 			}
-			//ÂıËÙ²¥·Å
+			//æ…¢é€Ÿæ’­æ”¾
 			function yu(){
 				video.playbackRate = 1/3;
 			}
-			//Õı³£²¥·Å
+			//æ­£å¸¸æ’­æ”¾
 			function normal(){
-				video.playbackRate = 1; //1ÊÇÄ¬ÈÏ±¶ËÙ
+				video.playbackRate = 1; //1æ˜¯é»˜è®¤å€é€Ÿ
 			}
-			//Ìá¸ßÒôÁ¿
+			//æé«˜éŸ³é‡
 			function up(){
-				video.volume += 0.1;//ÉùÒôÖµµÄ·¶Î§ÊÇ0-1
+				video.volume += 0.1;//å£°éŸ³å€¼çš„èŒƒå›´æ˜¯0-1
 			}
-			//½µµÍÒôÁ¿
+			//é™ä½éŸ³é‡
 			function down(){
 				video.volume -= 0.1;
 			}
 		</script>
 		<hr />
-		ÒôÆµ±êÇ©µÄÊ¹ÓÃ<br />
-		<audio src="ÎÒµÄºÃĞÖµÜ.mp3" controls="controls">
-		ÄúµÄÀÏÅ£ÒÑ¾­À­²»¶¯ÆÆ³µÁË£¬¸Ï½ô»»ÁË°É£¬ÏëÌıÖĞ¹úºÃÉùÒôÂğ£¿
+		éŸ³é¢‘æ ‡ç­¾çš„ä½¿ç”¨<br />
+		<audio src="æˆ‘çš„å¥½å…„å¼Ÿ.mp3" controls="controls">
+		æ‚¨çš„è€ç‰›å·²ç»æ‹‰ä¸åŠ¨ç ´è½¦äº†ï¼Œèµ¶ç´§æ¢äº†å§ï¼Œæƒ³å¬ä¸­å›½å¥½å£°éŸ³å—ï¼Ÿ
 		</audio>
 	</body>
 </html>

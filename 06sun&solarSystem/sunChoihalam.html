@@ -1,67 +1,67 @@
 <!doctype html>
 <html>
 	<head>
-
+		<meta charset="utf-8" />
 	</head>
 	<body>
 		<canvas id="canvas" width="800" height="400" style="background:#000">
-			ÄúµÄÀÏÅ£ÆÆ³µ¸ÃÈÓÀ²£¬¸Ï½ôÉı¼¶ä¯ÀÀÆ÷£¬À´¿´¿´ÎÒÓÃcanvas×öµÄ¿áìÅµÄÌ«ÑôÏµ°É£¡
+			æ‚¨çš„è€ç‰›ç ´è½¦è¯¥æ‰”å•¦ï¼Œèµ¶ç´§å‡çº§æµè§ˆå™¨ï¼Œæ¥çœ‹çœ‹æˆ‘ç”¨canvasåšçš„é…·ç‚«çš„å¤ªé˜³ç³»å§ï¼
 		</canvas>
 		<script>
-			//»ñÈ¡canvasÔªËØ
+			//è·å–canvaså…ƒç´ 
 			var canvas = document.getElementById('canvas');
-			//ÉèÖÃ2d»æÍ¼»·¾³
+			//è®¾ç½®2dç»˜å›¾ç¯å¢ƒ
 			var cxt = canvas.getContext('2d');
 
-			//ÉùÃ÷Ò»¸öÊ±¼ä²ÎÊı 1£º1Ìì
+			//å£°æ˜ä¸€ä¸ªæ—¶é—´å‚æ•° 1ï¼š1å¤©
 			var time = 0; 
 			function draw(){
-			//Çå³ı»­²¼£¨Çå³ıÖ®Ç°µÄÄÚÈİ£©
+			//æ¸…é™¤ç”»å¸ƒï¼ˆæ¸…é™¤ä¹‹å‰çš„å†…å®¹ï¼‰
 			cxt.clearRect(0,0,800,400);
-			//»­¹ìµÀ
-			//ÉèÖÃ±Ê´¥ÑÕÉ«
+			//ç”»è½¨é“
+			//è®¾ç½®ç¬”è§¦é¢œè‰²
 			cxt.strokeStyle = "#fff";
 			cxt.beginPath();
 			cxt.arc(400,200,100,0,360,false);
 			cxt.closePath();
 			cxt.stroke();
-			//»­Ì«Ñô
+			//ç”»å¤ªé˜³
 			cxt.beginPath();
 			cxt.arc(400,200,20,0,360,false);
 			cxt.closePath();
-			//Ì«ÑôĞèÒªÌî³äÑÕÉ«
-			//ÉèÖÃÌî³äÑÕÉ«£¨½¥±äÉ«£©
-				//cxt.createRadialGradient(ÄÚÔ²ĞÄx£¬ÄÚÔ²ĞÄy,ÄÚ°ë¾¶£¬ÍâÔ²ĞÄx£¬ÍâÔ²ĞÄy£¬Íâ°ë¾¶);
+			//å¤ªé˜³éœ€è¦å¡«å……é¢œè‰²
+			//è®¾ç½®å¡«å……é¢œè‰²ï¼ˆæ¸å˜è‰²ï¼‰
+				//cxt.createRadialGradient(å†…åœ†å¿ƒxï¼Œå†…åœ†å¿ƒy,å†…åŠå¾„ï¼Œå¤–åœ†å¿ƒxï¼Œå¤–åœ†å¿ƒyï¼Œå¤–åŠå¾„);
 			var sunColor = cxt.createRadialGradient(400,200,0,400,200,20);
 			sunColor.addColorStop(0,"#f00");
 			sunColor.addColorStop(1,"#f90");
 			cxt.fillStyle = sunColor;
 			cxt.fill();
 
-			//»­µØÇò
+			//ç”»åœ°çƒ
 			cxt.save();
-			//ÉèÖÃÒ»ÏÂÒì´ÎÔª¿Õ¼äµÄ0£¬0µã
+			//è®¾ç½®ä¸€ä¸‹å¼‚æ¬¡å…ƒç©ºé—´çš„0ï¼Œ0ç‚¹
 			cxt.translate(400,200);
-			//ÉèÖÃĞı×ª½Ç¶È
+			//è®¾ç½®æ—‹è½¬è§’åº¦
 				//cxt.rotate(90*Math.PI/180);
-				//µØÇò¹«×ªÒ»ÖÜĞèÒª365Ìì£¬time =1Ìì£¬ Ò»Ìì×ª365/360¶È
+				//åœ°çƒå…¬è½¬ä¸€å‘¨éœ€è¦365å¤©ï¼Œtime =1å¤©ï¼Œ ä¸€å¤©è½¬365/360åº¦
 				cxt.rotate(time*360/365*Math.PI/180);
-			//»­³öµØÇò
+			//ç”»å‡ºåœ°çƒ
 			cxt.beginPath();
 			cxt.arc(0,-100,10,0,360,false);
 			cxt.closePath();
-			//ÉèÖÃÒ»ÏÂµØÇòµÄÑÕÉ«
+			//è®¾ç½®ä¸€ä¸‹åœ°çƒçš„é¢œè‰²
 			var earthColor = cxt.createRadialGradient(0,-100,0,0,-100,10);
 			earthColor.addColorStop(0,'#78B1E8');
 			earthColor.addColorStop(1,'#050C12');
 			cxt.fillStyle = earthColor;
 			cxt.fill();
 			cxt.restore();
-			//Ã¿»­Ò»´ÎÍ¼Ïñ£¬Ê±¼ä²ÎÊı¼Ó1
+			//æ¯ç”»ä¸€æ¬¡å›¾åƒï¼Œæ—¶é—´å‚æ•°åŠ 1
 			time+=1;
 			}
 
-			//Ê¹µØÇò¶¯ÆğÀ´
+			//ä½¿åœ°çƒåŠ¨èµ·æ¥
 			setInterval(draw,10);
 		</script>
 	</body>

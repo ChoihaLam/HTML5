@@ -125,19 +125,93 @@ function drawBrush(num){
 		}
 }
 
+
+var eraserFlag = 0;//设置橡皮擦的状态标志位
 //橡皮工具函数
 function drawEraser(num){
 		setStatus( actions, num, 1 );
+		canvas.onmousedown = function(evt){
+			evt = window.event || evt;
+			var eraserX = evt.pageX - this.offsetLeft;
+			var eraserY = evt.pageY - this.offsetTop;
+			//canvas擦除方法 cxt.clearRect();
+			cxt.clearRect(eraserX-cxt.lineWidth,eraserY-cxt.lineWidth,cxt.lineWidth*2,cxt.lineWidth*2);
+			eraserFlag = 1;
+		}
+		//随着鼠标移动不停地擦除
+		canvas.onmousemove = function(evt){
+			evt = window.event || evt;
+			var eraserX = evt.pageX - this.offsetLeft;
+			var eraserY = evt.pageY - this.offsetTop;
+			//擦除方法 
+			if(eraserFlag){//判断鼠标左键是否按下（按下的情况下拖动鼠标才能删除）
+				cxt.clearRect(eraserX-cxt.lineWidth,eraserY-cxt.lineWidth,cxt.lineWidth*2,cxt.lineWidth*2);
+			}
+
+		}
+		//抬起鼠标按键 清除擦除状态位 变成0
+		canvas.onmouseup = function(){
+			eraserFlag = 0;
+		
+		}
+		//抬起鼠标移出画布 清除擦出的状态位 变成0
+		canvas.onmouseout = function(){
+			eraserFlag = 0;
+		}
+
 }
 
 //油漆桶工具函数
 function drawPaint(num){
 		setStatus( actions, num, 1);
+		canvas.onmousedown = function(){
+			//把画布涂成指定的颜色 -> 画一个填充颜色的矩形
+			cxt.fillRect(0,0,880,400);
+		}
+		canvas.onmouseup = null;
+		canvas.onmousemove = null;
+		canvas.onmouseout = null;
 }
 
 //吸管工具函数
 function drawStraw(num){
 		setStatus( actions, num, 1 );
+		canvas.onmousedown = function(evt){
+			evt = window.event || evt;
+			var strawX = evt.pageX - this.offsetLeft;
+			var strawY = evt.pageY - this.offsetTop;
+			//获取该点坐标处的颜色信息
+			//获取图像信息的方法getImageData(开始点X，开始点Y，宽度，高度)
+			var obj = cxt.getImageData(strawX,strawY,1,1);
+			//alert(obj.data[1]);//ImageData对象
+			//obj.data = [红，绿，蓝色，透明度]//1像素的数据
+			//注意：在data数组中，每4个数组元素表示canvas画布中的一个像素点
+			//这4个元素的取值范围都是0-255
+			/*
+				obj.data = [
+							红，绿，蓝，透明度,
+							红，绿，蓝，透明度,
+							红，绿，蓝，透明度,
+							红，绿，蓝，透明度,
+							红，绿，蓝，透明度,
+							红，绿，蓝，透明度,
+							红，绿，蓝，透明度,
+							红，绿，蓝，透明度,
+							]//多像素的数据
+			*/
+
+			var color = 'rgb('+obj.data[0]+','+obj.data[1]+','+obj.data[2]+')'
+			//alert(color);
+			//将吸管吸出的颜色设定到我们的应用中
+			cxt.strokeStyle = color;
+			cxt.fillStyle = color;
+			//颜色吸取之后自动选择画笔工具
+			drawBrush(0);
+		}
+		//取消移动事件、鼠标抬起事件、鼠标移出事件
+		canvas.onmousemove = null;
+		canvas.onmouseup = null;
+		canvas.onmouseout = null;
 }
 
 //文本工具函数
@@ -348,6 +422,7 @@ function setLineWidth(num){
 			break;
 		case 2:
 			cxt.lineWidth=5;
+			break;
 		case 3:
 			cxt.lineWidth=8;
 			break;

@@ -16,8 +16,13 @@
 					<h3>图像</h3>
 					<hr />
 					<ul id="image">
-						<li id="saveing"><button>保存图片</button></li>
-						<li id="clearing"><button>清空画板</button></li>
+						<li id="saveing" >
+							<form id="myform" action="" method="post">
+							<input type="hidden" id="data" name="data" value="" />
+							<button onclick="saveimg()">保存图片</button>
+							</form>
+						</li>
+						<li id="clearing" ><button onclick="clearimg()">清空画板</button></li>
 					</ul>
 				</li>
 				<li>

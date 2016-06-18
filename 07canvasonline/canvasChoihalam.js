@@ -86,6 +86,24 @@ function setStatus(Arr, num, type){
 
 }
 
+//设置图像功能函数 保存图片 清空画布
+function saveimg(){
+	var imgdata = canvas.toDataURL();
+	var b64 = imgdata.substring(22);
+	//alert(b64);
+	//将form表单中的隐藏表单 赋值（值就是我们获取的b64）
+	var data = document.getElementById('data');
+	data.value = b64;
+	//将表单提交到后台
+	var from = document.getElementById('myform');
+	form.submit();
+}
+//清空画布
+function clearimg(){
+	//画布清除方法
+	cxt.clearRect(0,0,880,400);
+}
+
 //列出所有的按钮对应的函数
 //铅笔工具函数
 function drawBrush(num){
@@ -217,11 +235,38 @@ function drawStraw(num){
 //文本工具函数
 function drawText(num){
 		setStatus( actions, num, 1);
+		canvas.onmousedown = function(evt){
+			evt = window.event || evt;
+			//获取鼠标点击时的位置
+			var textX = evt.pageX - this.offsetLeft;
+			var textY = evt.pageY - this.offsetTop;
+			//alert(textX+'--'+textY);
+			//获取用户输入的信息
+			//window.prompt(对话框提示，默认值)；
+			var userVal = window.prompt('请在这里输入文字','');
+			//alert(userVal);
+			//将用户输入的文字写到画布中对应的坐标点上
+			if(userVal!=null){
+				cxt.fillText(userVal,textX,textY);
+			}
+			cxt.fillText(userVal,textX,textY);
+		}
+		canvas.onmousemove = null;
+		canvas.onmouseup = null;
+		canvas.onmouseout = null;
 }
 
 //放大镜工具函数
 function drawMagnifier(num){
-		setStatus( actions, num, 1 );
+		setStatus(actions,num,1);
+		//用户输入的数据大小
+		var scale = window.prompt('请输入要放大的百分比[只能是整型]','100');
+		//把数据转换成对应canvas画布的大小
+		var scaleW = 880*scale/100;
+		var scaleH = 400*scale/100;
+		//将数据设置到对应HTML标签上
+		canvas.style.width = parseInt(scaleW)+'px';
+		canvas.style.height = parseInt(scaleH)+'px';
 }
 
 //线形状函数
